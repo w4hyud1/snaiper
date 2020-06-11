@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+
+
+    <title>Starter Template for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" media="screen">
+
+    <!-- Custom styles for this template -->
+    <link th:href="@{/css/starter-template.css}" rel="stylesheet" media="screen">
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div th:insert="menu"></div>
+    </div>
+</nav>
+
+<div class="container">
+
+    <!--<div class="alert alert-danger" role="alert" th:if="${!status}">-->
+        <!--<strong>Error:</strong>-->
+        <!--<span th:text="${message}"></span>-->
+    <!--</div>-->
+
+    <h1>Data Solver </h1>
+    <div>
+        <a href="/solver/upload" class="btn btn-default">Upload Data</a>
+    </div>
+    <br/>
+    <div th:if="${not #lists.isEmpty(solver)}">
+        <table class="table table-striped">
+            <tr width="100%">
+                <th>Order ID</th>
+                <th>Date Push</th>
+                <th>Push Type</th>
+                <th>Status Log</th>
+                <th>Message</th>
+                <th>Action</th>
+            </tr>
+
+            <tr th:each="solvers : ${solver}">
+                <td th:text="${solvers.order_id}"></td>
+                <td th:text="${solvers.timestamp}"></td>
+                <td th:text="${solvers.push_type}"></td>
+                <td th:text="${solvers.status}"></td>
+                <td th:text="${solvers.message}"></td>
+                <td>
+                    <a th:href="${'/solver/edit/'+solvers.id}"><span class="btn btn-primary">Edit</span> </a>
+                    <a th:href="${'/solver/del/'+solvers.id}"><span class="btn btn-danger">Delete</span> </a>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+</div><!-- /.container -->
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script th:src="@{/js/jquery.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script th:src="@{/js/ie10-viewport-bug-workaround.js}"></script>
+</body>
+</html>

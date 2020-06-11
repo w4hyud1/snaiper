@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+
+
+    <title>Starter Template for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" media="screen">
+
+    <!-- Custom styles for this template -->
+    <link th:href="@{/css/starter-template.css}" rel="stylesheet" media="screen">
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div th:insert="menu"></div>
+    </div>
+</nav>
+
+<div class="container">
+
+    <!--<div class="alert alert-danger" role="alert" th:if="${!status}">-->
+    <!--<strong>Error:</strong>-->
+    <!--<span th:text="${message}"></span>-->
+    <!--</div>-->
+
+    <h1>Data User </h1>
+    <div>
+        <a href="/user/create" class="btn btn-default">New Data</a>
+    </div>
+    <br/>
+    <div th:if="${not #lists.isEmpty(user)}">
+        <table class="table table-striped">
+            <tr width="100%">
+                <th>NIK</th>
+                <th>Nama</th>
+                <th>Email</th>
+                <th>Action</th>
+            </tr>
+
+            <tr th:each="users : ${user}">
+                <td th:text="${users.nik}"></td>
+                <td th:text="${users.nama}"></td>
+                <td th:text="${users.email}"></td>
+                <td>
+                    <a th:href="${'/user/edit/'+users.nik}"><span class="btn btn-primary">Edit</span> </a>
+                    <a th:href="${'/user/del/'+users.nik}"><span class="btn btn-danger">Delete</span> </a>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+</div><!-- /.container -->
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script th:src="@{/js/jquery.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script th:src="@{/js/ie10-viewport-bug-workaround.js}"></script>
+</body>
+</html>
