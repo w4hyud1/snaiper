@@ -1,5 +1,6 @@
 package com.tiket.sniper.controller;
 
+import com.tiket.sniper.model.User;
 import com.tiket.sniper.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,4 +22,13 @@ public class UserController {
         model.addAttribute("user", userService.listUser());
         return "user";
     }
+
+    @RequestMapping("/user/create")
+    public String showForm(Model model){
+        model.addAttribute("user", new User());
+        return "formUser";
+    }
+
+
+
 }
